@@ -43,8 +43,8 @@ wss <- data.frame(clusterNo = seq(1,50), wss = rep(0, 50))
 
 for (i in 1:50){
   
-  clust.k <-time.df %>% select(Longitude, Latitude) %>% kmeans(50, iter.max=500)
-  wss$wss[i] <- sum(clust.k$withinss)
+  clust.k <-time.df %>% select(Longitude, Latitude) %>% kmeans(i, iter.max=500)
+  wss$wss[i] <- sum(clust.k$tot.withinss)
 }
 p2 <- ggplot(wss)+geom_point(aes(clusterNo, wss), size = 4, shape = 1, color='#009E73')+
   xlab('No. of Centroids') + ylab('WSS') +
